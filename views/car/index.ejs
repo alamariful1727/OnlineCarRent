@@ -1,0 +1,75 @@
+<style>
+  body {
+    background: #FC354C;
+    /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, rgb(28, 143, 219), #FC354C);
+    /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, rgb(28, 143, 219), #FC354C);
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+  }
+
+  .abs-opt {
+    position: absolute;
+    top: 0;
+    right: 0;
+  }
+</style>
+<div class="container">
+  <h1 class="text-center head-text">Rent A Car For Your Comfort!!</h1>
+  <hr class="head-hr">
+
+  <!-- row ends -->
+  <div class="row">
+    <div class="card-columns">
+
+      <%cars.forEach(function (car, i, arr) {%>
+      <%if(car.photo != ''){%>
+      <div class="card">
+        <%if(isAuth){%>
+        <%if(isAdmin.type == 'admin'){%>
+        <div class="text-right abs-opt">
+          <button type="button" data-cid="<%=car.cid%>" onclick="getCid(this);" id="btnEdit" class="btn btn-info"
+            data-toggle="modal" data-target="#editModal">
+            <span><i class="fas fa-edit text-light"></i></span>
+          </button>
+          <button type="button" data-cid="<%=car.cid%>" onclick="getCid(this);" id="btnDelete"
+            class="btn btn-danger ml-1" data-toggle="modal" data-target="#exampleModalCenter">
+            <span><i class="fas fa-trash-alt text-light"></i></span>
+          </button>
+        </div>
+        <%}}%>
+        <img class="card-img-top" src="/uploads/<%=car.photo%>" alt="Sorry: Admin will Add a image later..">
+        <div class="card-body">
+          <h5 class="card-title"><%=car.cname%></h5>
+          <h6 class="card-subtitle mb-2 text-muted"><%=car.category%></h6>
+          <p class="card-text"><%=car.description%></p>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">Min rent price: <%=car.hprice%> ++</li>
+            <li class="list-group-item"><a href="#" class="btn btn-dark card-link">Book for rent</a>
+              <a href="#" class="btn btn-info card-link">Details</a></li>
+          </ul>
+        </div>
+      </div>
+      <%}%>
+
+      <%});%>
+      <!-- <div class="card">
+        <img class="card-img-top" src="/uploads/cars/Mercedes-Benz.jpg" alt="Card image cap">
+        <div class="card-body">
+          <h5 class="card-title">Name</h5>
+          <h6 class="card-subtitle mb-2 text-muted">Category</h6>
+          <p class="card-text">Description</p>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">Min rent price: 600 ++</li>
+            <li class="list-group-item"><a href="#" class="btn btn-dark card-link">Book for rent</a>
+              <a href="#" class="btn btn-info card-link">Details</a></li>
+          </ul>
+        </div>
+      </div> -->
+
+    </div>
+    <!-- card deck ends -->
+  </div>
+  <!-- row ends -->
+</div>

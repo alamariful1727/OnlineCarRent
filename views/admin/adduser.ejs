@@ -1,0 +1,47 @@
+<style>
+  body {
+    background: linear-gradient(to right, #ffffff 0%, rgba(209, 186, 54, 0.863) 100%);
+  }
+</style>
+<div class="container">
+  <h1 class="text-center head-text"><%=title%></h1>
+  <hr class="head-hr">
+  <div class="row">
+    <!-- register form starts -->
+    <div class="col-md-6 offset-md-3">
+      <form method="POST" action="/admin/adduser">
+        <div class="form-group">
+          <label for="username">Username</label>
+          <input type="text" value="<%= typeof data.uname != 'undefined' ? data.uname : '' %>" name="uname"
+            class="form-control" id="username" aria-describedby="usernameError" placeholder="Enter your username!!">
+          <small id="usernameError"
+            class="form-text text-danger"><%= typeof errors.uname != 'undefined' ? errors.uname.msg : '' %></small>
+        </div>
+        <div class="form-group">
+          <label for="email">Email address</label>
+          <input type="email" value="<%= typeof data.email != 'undefined' ? data.email : '' %>" name="email"
+            class="form-control" id="email" aria-describedby="emailError" placeholder="Enter your email">
+          <small id="emailError"
+            class="form-text text-danger"><%= typeof errors.email != 'undefined' ? errors.email.msg : '' %></small>
+        </div>
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input type="password" value="<%= typeof data.pass != 'undefined' ? data.pass : '' %>" name="pass"
+            class="form-control" id="password" aria-describedby="passError" placeholder="Password">
+          <small id="passError"
+            class="form-text text-danger"><%= typeof errors.pass != 'undefined' ? errors.pass.msg : '' %></small>
+        </div>
+        <div class="form-group">
+          <label for="re-password">Re-Enter Password</label>
+          <input type="password" value="<%= typeof data.repass != 'undefined' ? data.repass : '' %>" name="repass"
+            class="form-control" id="re-password" aria-describedby="repassError" placeholder="Password">
+          <small id="repassError"
+            class="form-text text-danger"><%= typeof errors.repass != 'undefined' ? errors.repass.msg : '' %></small>
+        </div>
+        <button type="submit" class="btn btn-dark mx-auto d-block">Add</button>
+      </form>
+      <a href="/admin" class="head-text d-block text-center my-4 toggle-text">Admin dashboard!!</a>
+    </div>
+  </div>
+
+</div>

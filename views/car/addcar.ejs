@@ -1,0 +1,119 @@
+<style>
+  body {
+    background: #FC354C;
+    /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #0ABFBC, #FC354C);
+    /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #0ABFBC, #FC354C);
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+  }
+</style>
+<div class="container">
+  <h1 class="text-center head-text">ADD a new car!!</h1>
+  <hr class="head-hr">
+  <% if(tittle != ''){ %>
+  <div class="alert alert-info" role="alert">
+    <strong><%= tittle %></strong>
+  </div>
+  <%}%>
+  <!-- row ends -->
+  <div class="row">
+    <div class="col-lg-6 col-md-12">
+      <div class="alert alert-warning" role="alert">
+        <strong>STEP 1</strong>
+      </div>
+      <div class="card p-3">
+        <form method="POST" action="/cars/add">
+          <div class="form-group">
+            <label for="cname">Car name</label>
+            <input type="text" required value="<%= typeof data.cname != 'undefined' ? data.cname : '' %>" name="cname"
+  class="form-control" id="cname" aria-describedby="cnameError" placeholder="Enter your car name!!">
+  <small id="cnameError"
+    class="form-text text-danger"><%= typeof errors.cname != 'undefined' ? errors.cname.msg : '' %></small>
+</div>
+<div class="form-group">
+  <label for="description">Description</label>
+  <textarea name="description" class="form-control" placeholder="Write your car details ..." id=" description"
+    rows="3"><%= typeof data.description != 'undefined' ? data.description : '' %></textarea>
+  <small id="ccError"
+    class="form-text text-danger"><%= typeof errors.description != 'undefined' ? errors.description.msg : '' %></small>
+</div>
+<!-- category -->
+<div class="form-group">
+  <label for="category">Category</label>
+  <select required name="category" class="form-control form-control-sm" id="category">
+    <option value="" selected="selected" disabled="disabled">Select category</option>
+    <option value="private car">Private car</option>
+    <option value="microbus/van">Microbus/Van</option>
+    <option value="big truck">Big Truck</option>
+    <option value="pickup truck">PickUp truck</option>
+  </select>
+  <small id="ccError"
+    class="form-text text-danger"><%= typeof errors.category != 'undefined' ? errors.category.msg : '' %></small>
+</div>
+<!-- category ends -->
+<div class="row">
+  <!-- hourly -->
+  <div class="form-group col-lg-6 col-md-6">
+    <label for="hprice">Hourly rate</label>
+    <input type="text" required value="<%= typeof data.hprice != 'undefined' ? data.hprice : '' %>" name="hprice"
+      class="form-control" id="hprice" aria-describedby="hpriceError" placeholder="1-10000 tk..">
+    <small id="hpriceError"
+      class="form-text text-danger"><%= typeof errors.hprice != 'undefined' ? errors.hprice.msg : '' %></small>
+  </div>
+  <!-- hourly ends -->
+  <!-- weekly -->
+  <div class="form-group col-lg-6 col-md-6">
+    <label for="wprice">Weekly rate</label>
+    <input type="text" required value="<%= typeof data.wprice != 'undefined' ? data.wprice : '' %>" name="wprice"
+      class="form-control" id="wprice" aria-describedby="wpriceError" placeholder="1-70000 tk..">
+    <small id="wpriceError"
+      class="form-text text-danger"><%= typeof errors.wprice != 'undefined' ? errors.wprice.msg : '' %></small>
+  </div>
+  <!-- weekly ends -->
+</div>
+<button type="submit" class="btn btn-primary mx-auto d-block">ADD <span><i
+      class="fas fa-share ml-2"></i></span></button>
+</form>
+</div>
+<!-- card ends -->
+<a href="/cars/user/<%=isAdmin.uid%>" class="head-text d-block text-center my-4 toggle-text">Your previous
+  experiences!!</a>
+</div>
+<!--  -->
+<div class="col-lg-6 col-md-12">
+  <div class="container text-center">
+    <div class="alert alert-warning" role="alert">
+      <strong>STEP 2</strong>
+    </div>
+    <h2 class="text-center head-text">Add car picture!!</h2>
+    <hr class="head-hr">
+    <%= typeof msg != 'undefined' ? msg : '' %>
+    <div id="success_msg" style="font-weight: 500;" class="alert alert-success d-none" role="alert"></div>
+    <div id="danger_msg" style="font-weight: 500;" class="alert alert-danger d-none" role="alert"></div>
+    <div class="file-upload my-4">
+      <button class="file-upload-btn" type="button" onclick="$('.file-upload-input').trigger( 'click' )">Add
+        Image</button>
+      <div class="image-upload-wrap">
+        <input class="file-upload-input" id="profile" name="profile" type='file' onchange="readURL(this);"
+          accept="image/*" multiple />
+        <div class="drag-text">
+          <h3>Drag and drop a file or select add Image</h3>
+        </div>
+      </div>
+      <div class="file-upload-content">
+        <img class="file-upload-image" src="#" alt="your image" />
+        <div class="image-title-wrap">
+          <button type="button" onclick="removeUpload()" class="remove-image">Remove <span class="image-title">Uploaded
+              Image</span></button>
+        </div>
+      </div>
+    </div>
+    <button id="upload_file" class="btn btn-dark">Upload image first!!</button>
+  </div>
+</div>
+<!-- row ends -->
+</div>
+
+<script src="/js/carfileUpload.js"></script>

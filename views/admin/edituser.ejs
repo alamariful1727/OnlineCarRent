@@ -1,0 +1,960 @@
+<style>
+  body {
+    background: #FC354C;
+    /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #0ABFBC, rgb(204, 108, 119));
+    /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #0ABFBC, rgb(204, 99, 111));
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+  }
+</style>
+<div class="container">
+  <h1 class="text-center head-text">Admin : Edit user[<%=user.uid%>]<a href="/admin/users"
+      class="btn btn-dark ml-1">Admin/users<i class="fas fa-sign-out-alt ml-1"></i></a></h1>
+  <hr class="head-hr">
+
+  <!-- row ends -->
+  <div class="row">
+    <div class="col-lg-6 col-md-12 mt-3">
+      <!--Section: Public info-->
+      <div class="card mb-4">
+        <h5 class="card-header bg-dark text-light">Public info</h5>
+        <div class="card-body">
+          <form method="POST" action="/admin/edituser/publicInfo">
+            <div class="form-group">
+              <label for="fname">First name</label>
+              <input type="text" value="<%= typeof data.fname != 'undefined' ? data.fname : user.fname %>" name="fname"
+                class="form-control form-control-sm" id="fname" placeholder="Enter your first name!!">
+              <small id="ccError"
+                class="form-text text-danger"><%= typeof errors.fname != 'undefined' ? errors.fname.msg : '' %></small>
+            </div>
+            <!-- fname -->
+            <div class="form-group">
+              <label for="lname">Last name</label>
+              <input type="text" value="<%= typeof data.lname != 'undefined' ? data.lname : user.lname %>" name="lname"
+                class="form-control form-control-sm" id="lname" placeholder="Enter your last name!!">
+              <small id="ccError"
+                class="form-text text-danger"><%= typeof errors.lname != 'undefined' ? errors.lname.msg : '' %></small>
+            </div>
+            <!-- lname -->
+            <div class="form-group">
+              <label for="desc">Description</label>
+              <textarea name="description" class="form-control" placeholder="Enter your description!!" id=" desc"
+                rows="3"><%= typeof data.description != 'undefined' ? data.description : user.description %></textarea>
+              <small id="ccError"
+                class="form-text text-danger"><%= typeof errors.description != 'undefined' ? errors.description.msg : '' %></small>
+            </div>
+            <!-- desc -->
+            <div class="form-group">
+              <label for="dob">Date of birth</label>
+              <input type="date" value="<%= typeof data.dob != 'undefined' ? data.dob : user.dob %>" name="dob"
+                class="form-control form-control-sm" id="dob">
+              <small id="ccError"
+                class="form-text text-danger"><%= typeof errors.dob != 'undefined' ? errors.dob.msg : '' %></small>
+            </div>
+            <!-- dob -->
+            <div class="form-row">
+              <div class="form-group col-md-8">
+                <label for="phone">Phone</label>
+                <input type="text" value="<%= typeof data.phone != 'undefined' ? data.phone : user.phone %>"
+                  name="phone" class="form-control form-control-sm input-phone" id="phone"
+                  placeholder="Enter your contact number!!">
+                <small id="ccError"
+                  class="form-text text-danger"><%= typeof errors.phone != 'undefined' ? errors.phone.msg : '' %></small>
+              </div>
+              <div class="form-group col-md-4">
+                <label for="select-country">Region code</label>
+                <select id="select-country" name="regionCode" ass="form-control form-control-sm">
+                  <option value="" selected="selected" disabled="disabled">Choose..</option>
+                  <option value="AC">AC</option>
+                  <option value="AD">AD</option>
+                  <option value="AE">AE</option>
+                  <option value="AF">AF</option>
+                  <option value="AG">AG</option>
+                  <option value="AI">AI</option>
+                  <option value="AL">AL</option>
+                  <option value="AM">AM</option>
+                  <option value="AO">AO</option>
+                  <option value="AR">AR</option>
+                  <option value="AS">AS</option>
+                  <option value="AT">AT</option>
+                  <option value="AU">AU</option>
+                  <option value="AW">AW</option>
+                  <option value="AX">AX</option>
+                  <option value="AZ">AZ</option>
+                  <option value="BA">BA</option>
+                  <option value="BB">BB</option>
+                  <option value="BD">BD</option>
+                  <option value="BE">BE</option>
+                  <option value="BF">BF</option>
+                  <option value="BG">BG</option>
+                  <option value="BH">BH</option>
+                  <option value="BI">BI</option>
+                  <option value="BJ">BJ</option>
+                  <option value="BL">BL</option>
+                  <option value="BM">BM</option>
+                  <option value="BN">BN</option>
+                  <option value="BO">BO</option>
+                  <option value="BQ">BQ</option>
+                  <option value="BR">BR</option>
+                  <option value="BS">BS</option>
+                  <option value="BT">BT</option>
+                  <option value="BW">BW</option>
+                  <option value="BY">BY</option>
+                  <option value="BZ">BZ</option>
+                  <option value="CA">CA</option>
+                  <option value="CC">CC</option>
+                  <option value="CD">CD</option>
+                  <option value="CF">CF</option>
+                  <option value="CG">CG</option>
+                  <option value="CH">CH</option>
+                  <option value="CI">CI</option>
+                  <option value="CK">CK</option>
+                  <option value="CL">CL</option>
+                  <option value="CM">CM</option>
+                  <option value="CN">CN</option>
+                  <option value="CO">CO</option>
+                  <option value="CR">CR</option>
+                  <option value="CU">CU</option>
+                  <option value="CV">CV</option>
+                  <option value="CW">CW</option>
+                  <option value="CX">CX</option>
+                  <option value="CY">CY</option>
+                  <option value="CZ">CZ</option>
+                  <option value="DE">DE</option>
+                  <option value="DJ">DJ</option>
+                  <option value="DK">DK</option>
+                  <option value="DM">DM</option>
+                  <option value="DO">DO</option>
+                  <option value="DZ">DZ</option>
+                  <option value="EC">EC</option>
+                  <option value="EE">EE</option>
+                  <option value="EG">EG</option>
+                  <option value="EH">EH</option>
+                  <option value="ER">ER</option>
+                  <option value="ES">ES</option>
+                  <option value="ET">ET</option>
+                  <option value="FI">FI</option>
+                  <option value="FJ">FJ</option>
+                  <option value="FK">FK</option>
+                  <option value="FM">FM</option>
+                  <option value="FO">FO</option>
+                  <option value="FR">FR</option>
+                  <option value="GA">GA</option>
+                  <option value="GB">GB</option>
+                  <option value="GD">GD</option>
+                  <option value="GE">GE</option>
+                  <option value="GF">GF</option>
+                  <option value="GG">GG</option>
+                  <option value="GH">GH</option>
+                  <option value="GI">GI</option>
+                  <option value="GL">GL</option>
+                  <option value="GM">GM</option>
+                  <option value="GN">GN</option>
+                  <option value="GP">GP</option>
+                  <option value="GQ">GQ</option>
+                  <option value="GR">GR</option>
+                  <option value="GT">GT</option>
+                  <option value="GU">GU</option>
+                  <option value="GW">GW</option>
+                  <option value="GY">GY</option>
+                  <option value="HK">HK</option>
+                  <option value="HN">HN</option>
+                  <option value="HR">HR</option>
+                  <option value="HT">HT</option>
+                  <option value="HU">HU</option>
+                  <option value="ID">ID</option>
+                  <option value="IE">IE</option>
+                  <option value="IL">IL</option>
+                  <option value="IM">IM</option>
+                  <option value="IN">IN</option>
+                  <option value="IO">IO</option>
+                  <option value="IQ">IQ</option>
+                  <option value="IR">IR</option>
+                  <option value="IS">IS</option>
+                  <option value="IT">IT</option>
+                  <option value="JE">JE</option>
+                  <option value="JM">JM</option>
+                  <option value="JO">JO</option>
+                  <option value="JP">JP</option>
+                  <option value="KE">KE</option>
+                  <option value="KG">KG</option>
+                  <option value="KH">KH</option>
+                  <option value="KI">KI</option>
+                  <option value="KM">KM</option>
+                  <option value="KN">KN</option>
+                  <option value="KP">KP</option>
+                  <option value="KR">KR</option>
+                  <option value="KW">KW</option>
+                  <option value="KY">KY</option>
+                  <option value="KZ">KZ</option>
+                  <option value="LA">LA</option>
+                  <option value="LB">LB</option>
+                  <option value="LC">LC</option>
+                  <option value="LI">LI</option>
+                  <option value="LK">LK</option>
+                  <option value="LR">LR</option>
+                  <option value="LS">LS</option>
+                  <option value="LT">LT</option>
+                  <option value="LU">LU</option>
+                  <option value="LV">LV</option>
+                  <option value="LY">LY</option>
+                  <option value="MA">MA</option>
+                  <option value="MC">MC</option>
+                  <option value="MD">MD</option>
+                  <option value="ME">ME</option>
+                  <option value="MF">MF</option>
+                  <option value="MG">MG</option>
+                  <option value="MH">MH</option>
+                  <option value="MK">MK</option>
+                  <option value="ML">ML</option>
+                  <option value="MM">MM</option>
+                  <option value="MN">MN</option>
+                  <option value="MO">MO</option>
+                  <option value="MP">MP</option>
+                  <option value="MQ">MQ</option>
+                  <option value="MR">MR</option>
+                  <option value="MS">MS</option>
+                  <option value="MT">MT</option>
+                  <option value="MU">MU</option>
+                  <option value="MV">MV</option>
+                  <option value="MW">MW</option>
+                  <option value="MX">MX</option>
+                  <option value="MY">MY</option>
+                  <option value="MZ">MZ</option>
+                  <option value="NA">NA</option>
+                  <option value="NC">NC</option>
+                  <option value="NE">NE</option>
+                  <option value="NF">NF</option>
+                  <option value="NG">NG</option>
+                  <option value="NI">NI</option>
+                  <option value="NL">NL</option>
+                  <option value="NO">NO</option>
+                  <option value="NP">NP</option>
+                  <option value="NR">NR</option>
+                  <option value="NU">NU</option>
+                  <option value="NZ">NZ</option>
+                  <option value="OM">OM</option>
+                  <option value="PA">PA</option>
+                  <option value="PE">PE</option>
+                  <option value="PF">PF</option>
+                  <option value="PG">PG</option>
+                  <option value="PH">PH</option>
+                  <option value="PK">PK</option>
+                  <option value="PL">PL</option>
+                  <option value="PM">PM</option>
+                  <option value="PR">PR</option>
+                  <option value="PS">PS</option>
+                  <option value="PT">PT</option>
+                  <option value="PW">PW</option>
+                  <option value="PY">PY</option>
+                  <option value="QA">QA</option>
+                  <option value="RE">RE</option>
+                  <option value="RO">RO</option>
+                  <option value="RS">RS</option>
+                  <option value="RU">RU</option>
+                  <option value="RW">RW</option>
+                  <option value="SA">SA</option>
+                  <option value="SB">SB</option>
+                  <option value="SC">SC</option>
+                  <option value="SD">SD</option>
+                  <option value="SE">SE</option>
+                  <option value="SG">SG</option>
+                  <option value="SH">SH</option>
+                  <option value="SI">SI</option>
+                  <option value="SJ">SJ</option>
+                  <option value="SK">SK</option>
+                  <option value="SL">SL</option>
+                  <option value="SM">SM</option>
+                  <option value="SN">SN</option>
+                  <option value="SO">SO</option>
+                  <option value="SR">SR</option>
+                  <option value="SS">SS</option>
+                  <option value="ST">ST</option>
+                  <option value="SV">SV</option>
+                  <option value="SX">SX</option>
+                  <option value="SY">SY</option>
+                  <option value="SZ">SZ</option>
+                  <option value="TA">TA</option>
+                  <option value="TC">TC</option>
+                  <option value="TD">TD</option>
+                  <option value="TG">TG</option>
+                  <option value="TH">TH</option>
+                  <option value="TJ">TJ</option>
+                  <option value="TK">TK</option>
+                  <option value="TL">TL</option>
+                  <option value="TM">TM</option>
+                  <option value="TN">TN</option>
+                  <option value="TO">TO</option>
+                  <option value="TR">TR</option>
+                  <option value="TT">TT</option>
+                  <option value="TV">TV</option>
+                  <option value="TW">TW</option>
+                  <option value="TZ">TZ</option>
+                  <option value="UA">UA</option>
+                  <option value="UG">UG</option>
+                  <option value="US">US</option>
+                  <option value="UY">UY</option>
+                  <option value="UZ">UZ</option>
+                  <option value="VA">VA</option>
+                  <option value="VC">VC</option>
+                  <option value="VE">VE</option>
+                  <option value="VG">VG</option>
+                  <option value="VI">VI</option>
+                  <option value="VN">VN</option>
+                  <option value="VU">VU</option>
+                  <option value="WF">WF</option>
+                  <option value="WS">WS</option>
+                  <option value="YE">YE</option>
+                  <option value="YT">YT</option>
+                  <option value="ZA">ZA</option>
+                  <option value="ZM">ZM</option>
+                  <option value="ZW">ZW</option>
+                </select>
+                <small id="ccError"
+                  class="form-text text-danger"><%= typeof errors.regionCode != 'undefined' ? errors.regionCode.msg : '' %></small>
+              </div>
+            </div>
+            <!-- phone -->
+            <div class="form-row">
+              <div class="form-group col-md-6">
+                <label for="country">Country</label>
+                <select name="country" class="form-control form-control-sm" id="country">
+                  <option value="" selected="selected" disabled="disabled">Choose your country!!</option>
+                  <option value="Afghanistan">Afghanistan</option>
+                  <option value="Åland Islands">Åland Islands</option>
+                  <option value="Albania">Albania</option>
+                  <option value="Algeria">Algeria</option>
+                  <option value="American Samoa">American Samoa</option>
+                  <option value="Andorra">Andorra</option>
+                  <option value="Angola">Angola</option>
+                  <option value="Anguilla">Anguilla</option>
+                  <option value="Antarctica">Antarctica</option>
+                  <option value="Antigua and Barbuda">Antigua and Barbuda</option>
+                  <option value="Argentina">Argentina</option>
+                  <option value="Armenia">Armenia</option>
+                  <option value="Aruba">Aruba</option>
+                  <option value="Australia">Australia</option>
+                  <option value="Austria">Austria</option>
+                  <option value="Azerbaijan">Azerbaijan</option>
+                  <option value="Bahamas">Bahamas</option>
+                  <option value="Bahrain">Bahrain</option>
+                  <option value="Bangladesh">Bangladesh</option>
+                  <option value="Barbados">Barbados</option>
+                  <option value="Belarus">Belarus</option>
+                  <option value="Belgium">Belgium</option>
+                  <option value="Belize">Belize</option>
+                  <option value="Benin">Benin</option>
+                  <option value="Bermuda">Bermuda</option>
+                  <option value="Bhutan">Bhutan</option>
+                  <option value="Bolivia">Bolivia</option>
+                  <option value="Bosnia and Herzegovina">Bosnia and Herzegovina</option>
+                  <option value="Botswana">Botswana</option>
+                  <option value="Bouvet Island">Bouvet Island</option>
+                  <option value="Brazil">Brazil</option>
+                  <option value="British Indian Ocean Territory">British Indian Ocean Territory</option>
+                  <option value="Brunei Darussalam">Brunei Darussalam</option>
+                  <option value="Bulgaria">Bulgaria</option>
+                  <option value="Burkina Faso">Burkina Faso</option>
+                  <option value="Burundi">Burundi</option>
+                  <option value="Cambodia">Cambodia</option>
+                  <option value="Cameroon">Cameroon</option>
+                  <option value="Canada">Canada</option>
+                  <option value="Cape Verde">Cape Verde</option>
+                  <option value="Cayman Islands">Cayman Islands</option>
+                  <option value="Central African Republic">Central African Republic</option>
+                  <option value="Chad">Chad</option>
+                  <option value="Chile">Chile</option>
+                  <option value="China">China</option>
+                  <option value="Christmas Island">Christmas Island</option>
+                  <option value="Cocos (Keeling) Islands">Cocos (Keeling) Islands</option>
+                  <option value="Colombia">Colombia</option>
+                  <option value="Comoros">Comoros</option>
+                  <option value="Congo">Congo</option>
+                  <option value="Congo, The Democratic Republic of The">Congo, The Democratic Republic of The</option>
+                  <option value="Cook Islands">Cook Islands</option>
+                  <option value="Costa Rica">Costa Rica</option>
+                  <option value="Cote D'ivoire">Cote D'ivoire</option>
+                  <option value="Croatia">Croatia</option>
+                  <option value="Cuba">Cuba</option>
+                  <option value="Cyprus">Cyprus</option>
+                  <option value="Czech Republic">Czech Republic</option>
+                  <option value="Denmark">Denmark</option>
+                  <option value="Djibouti">Djibouti</option>
+                  <option value="Dominica">Dominica</option>
+                  <option value="Dominican Republic">Dominican Republic</option>
+                  <option value="Ecuador">Ecuador</option>
+                  <option value="Egypt">Egypt</option>
+                  <option value="El Salvador">El Salvador</option>
+                  <option value="Equatorial Guinea">Equatorial Guinea</option>
+                  <option value="Eritrea">Eritrea</option>
+                  <option value="Estonia">Estonia</option>
+                  <option value="Ethiopia">Ethiopia</option>
+                  <option value="Falkland Islands (Malvinas)">Falkland Islands (Malvinas)</option>
+                  <option value="Faroe Islands">Faroe Islands</option>
+                  <option value="Fiji">Fiji</option>
+                  <option value="Finland">Finland</option>
+                  <option value="France">France</option>
+                  <option value="French Guiana">French Guiana</option>
+                  <option value="French Polynesia">French Polynesia</option>
+                  <option value="French Southern Territories">French Southern Territories</option>
+                  <option value="Gabon">Gabon</option>
+                  <option value="Gambia">Gambia</option>
+                  <option value="Georgia">Georgia</option>
+                  <option value="Germany">Germany</option>
+                  <option value="Ghana">Ghana</option>
+                  <option value="Gibraltar">Gibraltar</option>
+                  <option value="Greece">Greece</option>
+                  <option value="Greenland">Greenland</option>
+                  <option value="Grenada">Grenada</option>
+                  <option value="Guadeloupe">Guadeloupe</option>
+                  <option value="Guam">Guam</option>
+                  <option value="Guatemala">Guatemala</option>
+                  <option value="Guernsey">Guernsey</option>
+                  <option value="Guinea">Guinea</option>
+                  <option value="Guinea-bissau">Guinea-bissau</option>
+                  <option value="Guyana">Guyana</option>
+                  <option value="Haiti">Haiti</option>
+                  <option value="Heard Island and Mcdonald Islands">Heard Island and Mcdonald Islands</option>
+                  <option value="Holy See (Vatican City State)">Holy See (Vatican City State)</option>
+                  <option value="Honduras">Honduras</option>
+                  <option value="Hong Kong">Hong Kong</option>
+                  <option value="Hungary">Hungary</option>
+                  <option value="Iceland">Iceland</option>
+                  <option value="India">India</option>
+                  <option value="Indonesia">Indonesia</option>
+                  <option value="Iran, Islamic Republic of">Iran, Islamic Republic of</option>
+                  <option value="Iraq">Iraq</option>
+                  <option value="Ireland">Ireland</option>
+                  <option value="Isle of Man">Isle of Man</option>
+                  <option value="Israel">Israel</option>
+                  <option value="Italy">Italy</option>
+                  <option value="Jamaica">Jamaica</option>
+                  <option value="Japan">Japan</option>
+                  <option value="Jersey">Jersey</option>
+                  <option value="Jordan">Jordan</option>
+                  <option value="Kazakhstan">Kazakhstan</option>
+                  <option value="Kenya">Kenya</option>
+                  <option value="Kiribati">Kiribati</option>
+                  <option value="Korea, Democratic People's Republic of">Korea, Democratic People's Republic of</option>
+                  <option value="Korea, Republic of">Korea, Republic of</option>
+                  <option value="Kuwait">Kuwait</option>
+                  <option value="Kyrgyzstan">Kyrgyzstan</option>
+                  <option value="Lao People's Democratic Republic">Lao People's Democratic Republic</option>
+                  <option value="Latvia">Latvia</option>
+                  <option value="Lebanon">Lebanon</option>
+                  <option value="Lesotho">Lesotho</option>
+                  <option value="Liberia">Liberia</option>
+                  <option value="Libyan Arab Jamahiriya">Libyan Arab Jamahiriya</option>
+                  <option value="Liechtenstein">Liechtenstein</option>
+                  <option value="Lithuania">Lithuania</option>
+                  <option value="Luxembourg">Luxembourg</option>
+                  <option value="Macao">Macao</option>
+                  <option value="Macedonia, The Former Yugoslav Republic of">Macedonia, The Former Yugoslav Republic of
+                  </option>
+                  <option value="Madagascar">Madagascar</option>
+                  <option value="Malawi">Malawi</option>
+                  <option value="Malaysia">Malaysia</option>
+                  <option value="Maldives">Maldives</option>
+                  <option value="Mali">Mali</option>
+                  <option value="Malta">Malta</option>
+                  <option value="Marshall Islands">Marshall Islands</option>
+                  <option value="Martinique">Martinique</option>
+                  <option value="Mauritania">Mauritania</option>
+                  <option value="Mauritius">Mauritius</option>
+                  <option value="Mayotte">Mayotte</option>
+                  <option value="Mexico">Mexico</option>
+                  <option value="Micronesia, Federated States of">Micronesia, Federated States of</option>
+                  <option value="Moldova, Republic of">Moldova, Republic of</option>
+                  <option value="Monaco">Monaco</option>
+                  <option value="Mongolia">Mongolia</option>
+                  <option value="Montenegro">Montenegro</option>
+                  <option value="Montserrat">Montserrat</option>
+                  <option value="Morocco">Morocco</option>
+                  <option value="Mozambique">Mozambique</option>
+                  <option value="Myanmar">Myanmar</option>
+                  <option value="Namibia">Namibia</option>
+                  <option value="Nauru">Nauru</option>
+                  <option value="Nepal">Nepal</option>
+                  <option value="Netherlands">Netherlands</option>
+                  <option value="Netherlands Antilles">Netherlands Antilles</option>
+                  <option value="New Caledonia">New Caledonia</option>
+                  <option value="New Zealand">New Zealand</option>
+                  <option value="Nicaragua">Nicaragua</option>
+                  <option value="Niger">Niger</option>
+                  <option value="Nigeria">Nigeria</option>
+                  <option value="Niue">Niue</option>
+                  <option value="Norfolk Island">Norfolk Island</option>
+                  <option value="Northern Mariana Islands">Northern Mariana Islands</option>
+                  <option value="Norway">Norway</option>
+                  <option value="Oman">Oman</option>
+                  <option value="Pakistan">Pakistan</option>
+                  <option value="Palau">Palau</option>
+                  <option value="Palestinian Territory, Occupied">Palestinian Territory, Occupied</option>
+                  <option value="Panama">Panama</option>
+                  <option value="Papua New Guinea">Papua New Guinea</option>
+                  <option value="Paraguay">Paraguay</option>
+                  <option value="Peru">Peru</option>
+                  <option value="Philippines">Philippines</option>
+                  <option value="Pitcairn">Pitcairn</option>
+                  <option value="Poland">Poland</option>
+                  <option value="Portugal">Portugal</option>
+                  <option value="Puerto Rico">Puerto Rico</option>
+                  <option value="Qatar">Qatar</option>
+                  <option value="Reunion">Reunion</option>
+                  <option value="Romania">Romania</option>
+                  <option value="Russian Federation">Russian Federation</option>
+                  <option value="Rwanda">Rwanda</option>
+                  <option value="Saint Helena">Saint Helena</option>
+                  <option value="Saint Kitts and Nevis">Saint Kitts and Nevis</option>
+                  <option value="Saint Lucia">Saint Lucia</option>
+                  <option value="Saint Pierre and Miquelon">Saint Pierre and Miquelon</option>
+                  <option value="Saint Vincent and The Grenadines">Saint Vincent and The Grenadines</option>
+                  <option value="Samoa">Samoa</option>
+                  <option value="San Marino">San Marino</option>
+                  <option value="Sao Tome and Principe">Sao Tome and Principe</option>
+                  <option value="Saudi Arabia">Saudi Arabia</option>
+                  <option value="Senegal">Senegal</option>
+                  <option value="Serbia">Serbia</option>
+                  <option value="Seychelles">Seychelles</option>
+                  <option value="Sierra Leone">Sierra Leone</option>
+                  <option value="Singapore">Singapore</option>
+                  <option value="Slovakia">Slovakia</option>
+                  <option value="Slovenia">Slovenia</option>
+                  <option value="Solomon Islands">Solomon Islands</option>
+                  <option value="Somalia">Somalia</option>
+                  <option value="South Africa">South Africa</option>
+                  <option value="South Georgia and The South Sandwich Islands">South Georgia and The South Sandwich
+                    Islands</option>
+                  <option value="Spain">Spain</option>
+                  <option value="Sri Lanka">Sri Lanka</option>
+                  <option value="Sudan">Sudan</option>
+                  <option value="Suriname">Suriname</option>
+                  <option value="Svalbard and Jan Mayen">Svalbard and Jan Mayen</option>
+                  <option value="Swaziland">Swaziland</option>
+                  <option value="Sweden">Sweden</option>
+                  <option value="Switzerland">Switzerland</option>
+                  <option value="Syrian Arab Republic">Syrian Arab Republic</option>
+                  <option value="Taiwan, Province of China">Taiwan, Province of China</option>
+                  <option value="Tajikistan">Tajikistan</option>
+                  <option value="Tanzania, United Republic of">Tanzania, United Republic of</option>
+                  <option value="Thailand">Thailand</option>
+                  <option value="Timor-leste">Timor-leste</option>
+                  <option value="Togo">Togo</option>
+                  <option value="Tokelau">Tokelau</option>
+                  <option value="Tonga">Tonga</option>
+                  <option value="Trinidad and Tobago">Trinidad and Tobago</option>
+                  <option value="Tunisia">Tunisia</option>
+                  <option value="Turkey">Turkey</option>
+                  <option value="Turkmenistan">Turkmenistan</option>
+                  <option value="Turks and Caicos Islands">Turks and Caicos Islands</option>
+                  <option value="Tuvalu">Tuvalu</option>
+                  <option value="Uganda">Uganda</option>
+                  <option value="Ukraine">Ukraine</option>
+                  <option value="United Arab Emirates">United Arab Emirates</option>
+                  <option value="United Kingdom">United Kingdom</option>
+                  <option value="United States">United States</option>
+                  <option value="United States Minor Outlying Islands">United States Minor Outlying Islands</option>
+                  <option value="Uruguay">Uruguay</option>
+                  <option value="Uzbekistan">Uzbekistan</option>
+                  <option value="Vanuatu">Vanuatu</option>
+                  <option value="Venezuela">Venezuela</option>
+                  <option value="Viet Nam">Viet Nam</option>
+                  <option value="Virgin Islands, British">Virgin Islands, British</option>
+                  <option value="Virgin Islands, U.S.">Virgin Islands, U.S.</option>
+                  <option value="Wallis and Futuna">Wallis and Futuna</option>
+                  <option value="Western Sahara">Western Sahara</option>
+                  <option value="Yemen">Yemen</option>
+                  <option value="Zambia">Zambia</option>
+                  <option value="Zimbabwe">Zimbabwe</option>
+                </select>
+                <small id="ccError"
+                  class="form-text text-danger"><%= typeof errors.country != 'undefined' ? errors.country.msg : '' %></small>
+              </div>
+              <!-- country -->
+              <div class="form-group col-md-6">
+                <label for="blood">Blood Group</label>
+                <select name="blood" class="form-control form-control-sm" id="blood">
+                  <option value="" selected="selected" disabled="disabled">Select blood group</option>
+                  <option value="A+VE">A+VE</option>
+                  <option value="A-VE">A-VE</option>
+                  <option value="B+VE">B+VE</option>
+                  <option value="B-VE">B-VE</option>
+                  <option value="O+VE">O+VE</option>
+                  <option value="O-VE">O-VE</option>
+                  <option value="AB+VE">AB+VE</option>
+                  <option value="AB-VE">AB-VE</option>
+                </select>
+                <small id="ccError"
+                  class="form-text text-danger"><%= typeof errors.blood != 'undefined' ? errors.blood.msg : '' %></small>
+              </div>
+              <!-- blood -->
+            </div>
+            <!--  -->
+            <div class="form-row">
+              <div class="form-group col-md-4">
+                <label for="city">City</label>
+                <input type="text" value="<%= typeof data.city != 'undefined' ? data.city : user.city %>" name="city"
+                  class="form-control form-control-sm" id="city" placeholder="Where??">
+                <small id="ccError"
+                  class="form-text text-danger"><%= typeof errors.city != 'undefined' ? errors.city.msg : '' %></small>
+              </div>
+              <!-- City -->
+              <div class="form-group col-md-4">
+                <label for="gender">Gender</label>
+                <select name="gender" class="form-control form-control-sm" id="gender">
+                  <option value="" selected="selected" disabled="disabled">Select gender</option>
+                  <option value="male">Male</option>
+                  <option value="female">Female</option>
+                  <option value="others">Others</option>
+                </select>
+                <small id="ccError"
+                  class="form-text text-danger"><%= typeof errors.gender != 'undefined' ? errors.gender.msg : '' %></small>
+              </div>
+              <!-- Gender -->
+              <div class="form-group col-md-4">
+                <label for="occupation">Occupation</label>
+                <select name="occupation" class="form-control form-control-sm" id="occupation">
+                  <option value="" selected="selected" disabled="disabled">Select one ..</option>
+                  <option value="Student">- Student</option>
+                  <option value="Freelancer">- Freelancer</option>
+                  <optgroup label="Healthcare Practitioners and Technical Occupations:">
+                    <option value="Chiropractor">- Chiropractor</option>
+                    <option value="Dentist">- Dentist</option>
+                    <option value="Dietitian or Nutritionist<">- Dietitian or Nutritionist</option>
+                    <option value="Optometrist">- Optometrist</option>
+                    <option value="Pharmacist">- Pharmacist</option>
+                    <option value="Physician">- Physician</option>
+                    <option value="Physician Assistant">- Physician Assistant</option>
+                    <option value="Podiatrist">- Podiatrist</option>
+                    <option value="Registered Nurse">- Registered Nurse</option>
+                    <option value="Therapist">- Therapist</option>
+                    <option value="Veterinarian">- Veterinarian</option>
+                    <option value="Health Technologist or Technician">- Health Technologist or Technician</option>
+                    <option value="Other Healthcare Practitioners and Technical Occupation">- Other Healthcare
+                      Practitioners and
+                      Technical Occupation</option>
+                  </optgroup>
+                  <optgroup label="Healthcare Support Occupations:">
+                    <option value="Nursing, Psychiatric, or Home Health Aide">- Nursing, Psychiatric, or Home Health
+                      Aide</option>
+                    <option value="Occupational and Physical Therapist Assistant or Aide">- Occupational and Physical
+                      Therapist
+                      Assistant or Aide</option>
+                    <option value="Other Healthcare Support Occupation">- Other Healthcare Support Occupation</option>
+                  </optgroup>
+                  <optgroup label="Business, Executive, Management, and Financial Occupations:">
+                    <option value="Chief Executive">- Chief Executive</option>
+                    <option value="General and Operations Manager">- General and Operations Manager</option>
+                    <option value="Advertising, Marketing, Promotions, Public Relations, and Sales Manager">-
+                      Advertising, Marketing,
+                      Promotions, Public Relations, and Sales Manager</option>
+                    <option value="Operations Specialties Manager">- Operations Specialties Manager (e.g., IT or HR
+                      Manager)</option>
+                    <option value="Construction Manager">- Construction Manager</option>
+                    <option value="Engineering Manager">- Engineering Manager</option>
+                    <option value="Accountant, Auditor">- Accountant, Auditor</option>
+                    <option value="Business Operations or Financial Specialist">- Business Operations or Financial
+                      Specialist</option>
+                    <option value="Business Owner">- Business Owner</option>
+                    <option value="Other Business, Executive, Management, Financial Occupation">- Other Business,
+                      Executive,
+                      Management, Financial Occupation</option>
+                  </optgroup>
+                  <optgroup label="Architecture and Engineering Occupations:">
+                    <option value="Architect, Surveyor, or Cartographer">- Architect, Surveyor, or Cartographer</option>
+                    <option value="Engineer">- Engineer</option>
+                    <option value="Other Architecture and Engineering Occupation">- Other Architecture and Engineering
+                      Occupation
+                    </option>
+                  </optgroup>
+                  <optgroup label="Education, Training, and Library Occupations:">
+                    <option value="Postsecondary Teacher">- Postsecondary Teacher (e.g., College Professor)</option>
+                    <option value="School Teacher">- Primary, Secondary, or Special Education School Teacher</option>
+                    <option value="Teacher">- Other Teacher or Instructor</option>
+                    <option value="Other Education, Training, and Library Occupation">- Other Education, Training, and
+                      Library
+                      Occupation</option>
+                  </optgroup>
+                  <optgroup label="Other Professional Occupations:">
+                    <option value="3Arts, Design, Entertainment, Sports, and Media Occupations">- Arts, Design,
+                      Entertainment, Sports,
+                      and Media Occupations</option>
+                    <option value="Computer Specialist, Mathematical Science">- Computer Specialist, Mathematical
+                      Science</option>
+                    <option value="Counselor, Social Worker, or Other Community and Social Service Specialist">-
+                      Counselor, Social
+                      Worker, or Other Community and Social Service Specialist</option>
+                    <option value="Lawyer, Judge">- Lawyer, Judge</option>
+                    <option value="Life Scientist">- Life Scientist (e.g., Animal, Food, Soil, or Biological Scientist,
+                      Zoologist)
+                    </option>
+                    <option value="Physical Scientist">- Physical Scientist (e.g., Astronomer, Physicist, Chemist,
+                      Hydrologist)
+                    </option>
+                    <option value="Religious Worker">- Religious Worker (e.g., Clergy, Director of Religious Activities
+                      or Education)
+                    </option>
+                    <option value="Social Scientist">- Social Scientist and Related Worker</option>
+                    <option value="Other Professional Occupation">- Other Professional Occupation</option>
+                  </optgroup>
+                  <optgroup label="Office and Administrative Support Occupations:">
+                    <option value="Supervisor of Administrative Support Workers">- Supervisor of Administrative Support
+                      Workers
+                    </option>
+                    <option value="Financial Clerk">- Financial Clerk</option>
+                    <option value="Administrative Assistant">- Secretary or Administrative Assistant</option>
+                    <option value="Material Recording, Scheduling, and Dispatching Worker">- Material Recording,
+                      Scheduling, and
+                      Dispatching Worker</option>
+                    <option value="Other Office and Administrative Support Occupation">- Other Office and Administrative
+                      Support
+                      Occupation</option>
+                  </optgroup>
+                  <optgroup label="Services Occupations:">
+                    <option value="Protective Service">- Protective Service (e.g., Fire Fighting, Police Officer,
+                      Correctional
+                      Officer)</option>
+                    <option value="Chef">- Chef or Head Cook</option>
+                    <option value="Cook">- Cook or Food Preparation Worker</option>
+                    <option value="Food and Beverage Serving Worker">- Food and Beverage Serving Worker (e.g.,
+                      Bartender, Waiter,
+                      Waitress)</option>
+                    <option value="Building and Grounds Cleaning and Maintenance<">- Building and Grounds Cleaning and
+                      Maintenance
+                    </option>
+                    <option value="Personal Care and Service">- Personal Care and Service (e.g., Hairdresser, Flight
+                      Attendant,
+                      Concierge)</option>
+                    <option value="Sales Supervisor, Retail Sales">- Sales Supervisor, Retail Sales</option>
+                    <option value="Retail Sales Worker">- Retail Sales Worker</option>
+                    <option value="Insurance Sales Agent">- Insurance Sales Agent</option>
+                    <option value="Sales Representative">- Sales Representative</option>
+                    <option value="Real Estate Sales Agent">- Real Estate Sales Agent</option>
+                    <option value="Other Services Occupation">- Other Services Occupation</option>
+                  </optgroup>
+                  <optgroup label="Agriculture, Maintenance, Repair, and Skilled Crafts Occupations:">
+                    <option value="Construction and Extraction">- Construction and Extraction (e.g., Construction
+                      Laborer,
+                      Electrician)</option>
+                    <option value="Farming, Fishing, and Forestry">- Farming, Fishing, and Forestry</option>
+                    <option value="Installation, Maintenance, and Repair">- Installation, Maintenance, and Repair
+                    </option>
+                    <option value="Production Occupations">- Production Occupations</option>
+                    <option value="Other Agriculture, Maintenance, Repair, and Skilled Crafts Occupation">- Other
+                      Agriculture,
+                      Maintenance, Repair, and Skilled Crafts Occupation</option>
+                  </optgroup>
+                  <optgroup label="Transportation Occupations:">
+                    <option value="Aircraft Pilot or Flight Engineer">- Aircraft Pilot or Flight Engineer</option>
+                    <option value="Motor Vehicle Operator">- Motor Vehicle Operator (e.g., Ambulance, Bus, Taxi, or
+                      Truck Driver)
+                    </option>
+                    <option value="Other Transportation Occupation">- Other Transportation Occupation</option>
+                  </optgroup>
+                  <optgroup label="Other Occupations:">
+                    <option value="Military">- Military</option>
+                    <option value="Homemaker">- Homemaker</option>
+                    <option value="Other Occupation">- Other Occupation</option>
+                    <option value="Don't Know">- Don't Know</option>
+                    <option value="Not Applicable">- Not Applicable</option>
+                  </optgroup>
+                </select>
+                <small id="ccError"
+                  class="form-text text-danger"><%= typeof errors.occupation != 'undefined' ? errors.occupation.msg : '' %></small>
+              </div>
+              <!-- Occupation -->
+            </div>
+            <!--  -->
+            <div class="form-group">
+              <label for="address">Address</label>
+              <textarea name="address" class="form-control"
+                placeholder="Eg: Flat: 6A, House: 7**, Road: 1*, area, city, Country.." id=" address"
+                rows="3"><%= typeof data.address != 'undefined' ? data.address : user.address %></textarea>
+              <small id="ccError"
+                class="form-text text-danger"><%= typeof errors.address != 'undefined' ? errors.address.msg : '' %></small>
+            </div>
+            <button type="submit" class="btn btn-info mx-auto d-block">Save Changes</button>
+          </form>
+        </div>
+      </div>
+      <!--Section: Public info-->
+      <!--Section: Social Site/Websites-->
+      <div class="card mb-4">
+        <h5 class="card-header bg-dark text-light">Social Site/Websites</h5>
+        <div class="card-body">
+          <form method="POST" action="/admin/edituser/sites">
+            <div class="form-group">
+              <label for="website">website <i class="fas fa-globe-asia ml-2"></i></label>
+              <input type="text" value="<%= typeof data.website != 'undefined' ? data.website : user.website %>"
+                name="website" class="form-control form-control-sm" id="website" placeholder="https://www.example.edu">
+            </div>
+            <div class="form-group">
+              <label for="facebook">Facebook <i class="fab fa-facebook-f ml-2"></i></label>
+              <input type="text" value="<%= typeof data.facebook != 'undefined' ? data.facebook : user.facebook %>"
+                name="facebook" class="form-control form-control-sm" id="facebook" aria-describedby="fbError"
+                placeholder="Facebook">
+              <small id="fbError"
+                class="form-text text-danger"><%= typeof errors.facebook != 'undefined' ? errors.facebook.msg : '' %></small>
+            </div>
+            <div class="form-group">
+              <label for="twitter">Twitter <i class="fab fa-twitter ml-2"></i></label>
+              <input type="text" value="<%= typeof data.twitter != 'undefined' ? data.twitter : user.twitter %>"
+                name="twitter" class="form-control form-control-sm" id="twitter" placeholder="Twitter">
+              <small id="twError"
+                class="form-text text-danger"><%= typeof errors.twitter != 'undefined' ? errors.twitter.msg : '' %></small>
+            </div>
+            <div class="form-group">
+              <label for="instagram">Instagram <i class="fab fa-instagram ml-2"></i></label>
+              <input type="text" value="<%= typeof data.instagram != 'undefined' ? data.instagram : user.instagram %>"
+                name="instagram" class="form-control form-control-sm" id="instagram" placeholder="Instagram">
+              <small id="inError"
+                class="form-text text-danger"><%= typeof errors.instagram != 'undefined' ? errors.instagram.msg : '' %></small>
+            </div>
+            <div class="form-group">
+              <label for="googleplus">googleplus <i class="fab fa-google-plus-g ml-2"></i></label>
+              <input type="text"
+                value="<%= typeof data.googleplus != 'undefined' ? data.googleplus : user.googleplus %>"
+                name="googleplus" class="form-control form-control-sm" id="googleplus" placeholder="googoleplus">
+              <small id="gpError"
+                class="form-text text-danger"><%= typeof errors.googleplus != 'undefined' ? errors.googleplus.msg : '' %></small>
+            </div>
+            <button type="submit" class="btn btn-info mx-auto d-block">Save Changes</button>
+          </form>
+        </div>
+      </div>
+      <!--Section: Social Site/Websites-->
+    </div>
+    <div class="col-lg-6 col-md-12 mt-3">
+      <!--Section: Private info-->
+      <div class="card mb-4">
+        <h5 class="card-header bg-dark text-light">Private info</h5>
+        <div class="card-body">
+          <form method="POST" action="/admin/edituser/cc">
+            <div class="form-group">
+              <label for="uid">ID</label>
+              <input type="text" readonly value="<%= typeof data.uid != 'undefined' ? data.uid : user.uid %>" name="uid"
+                class="form-control form-control-sm" id="uid" placeholder="1-unlimited">
+            </div>
+            <div class="form-group">
+              <label for="type">Type</label>
+              <input type="text" value="<%= typeof data.type != 'undefined' ? data.type : user.type %>" name="type"
+                class="form-control form-control-sm" id="type" placeholder="User type">
+              <small id="ccError"
+                class="form-text text-danger"><%= typeof errors.type != 'undefined' ? errors.type.msg : '' %></small>
+            </div>
+            <div class="form-group">
+              <label for="member">Member since</label>
+              <input type="text" readonly
+                value="<%= typeof data.member != 'undefined' ? data.member : member.month+' '+member.year %>"
+                name="member" class="form-control form-control-sm" id="member" placeholder="Member">
+            </div>
+            <div class="form-group">
+              <label for="balance">Balance</label>
+              <input type="text" readonly
+                value="<%= typeof data.balance != 'undefined' ? data.balance : user.balance %>" name="balance"
+                class="form-control form-control-sm" id="balance" placeholder="Balance">
+            </div>
+            <div class="form-group">
+              <label for="ccard">Credit card <span class="card-label"></span></label>
+              <input type="text" value="<%= typeof data.ccard != 'undefined' ? data.ccard : user.ccard %>" name="ccard"
+                class="form-control form-control-sm cardNumber" id="ccard" placeholder="Card number">
+              <small id="ccError"
+                class="form-text text-danger"><%= typeof errors.ccard != 'undefined' ? errors.ccard.msg : '' %></small>
+            </div>
+            <button type="submit" class="btn btn-info mx-auto d-block">Save Changes</button>
+          </form>
+        </div>
+      </div>
+      <!--Section: Private info-->
+      <!--Section: Account settings-->
+      <div class="card mb-4">
+        <h5 class="card-header bg-dark text-light">Account settings</h5>
+        <div class="card-body">
+          <form method="POST" action="/admin/edituser/account">
+            <div class="form-group">
+              <label for="username">Username</label>
+              <input type="text" value="<%= typeof data.uname != 'undefined' ? data.uname : user.username %>"
+                name="uname" class="form-control form-control-sm" id="username" aria-describedby="usernameError"
+                placeholder="Enter your username!!">
+              <small id="usernameError"
+                class="form-text text-danger"><%= typeof errors.uname != 'undefined' ? errors.uname.msg : '' %></small>
+            </div>
+            <div class="form-group">
+              <label for="email">Email address</label>
+              <input type="email" readonly value="<%= typeof data.email != 'undefined' ? data.email : user.email %>"
+                name="email" class="form-control form-control-sm" id="email" aria-describedby="emailHelp"
+                placeholder="Enter your email">
+            </div>
+            <div class="form-group">
+              <label for="remail">Recovery email</label>
+              <input type="email" value="<%= typeof data.remail != 'undefined' ? data.remail : user.remail %>"
+                name="remail" class="form-control form-control-sm" id="remail" aria-describedby="remailHelp"
+                placeholder="Enter your Recovery email">
+              <small id="remailHelp"
+                class="form-text text-danger"><%= typeof errors.remail != 'undefined' ? errors.remail.msg : '' %></small>
+            </div>
+            <button type="submit" class="btn btn-info mx-auto d-block">Save Changes</button>
+          </form>
+        </div>
+      </div>
+      <!--Section: Account settings-->
+      <!--Section: Password change-->
+      <div class="card mb-4">
+        <h5 class="card-header bg-dark text-light">Password change</h5>
+        <div class="card-body">
+          <form method="POST" action="/admin/edituser/changepass">
+            <div class="form-group">
+              <label for="password">Current password</label>
+              <input type="password" value="<%= typeof data.password != 'undefined' ? data.password : '' %>"
+                name="password" class="form-control form-control-sm" id="password" placeholder="Current password">
+              <small id="ccError"
+                class="form-text text-danger"><%= typeof errors.password != 'undefined' ? errors.password.msg : '' %></small>
+            </div>
+            <div class="form-group">
+              <label for="npass">New password</label>
+              <input type="password" value="<%= typeof data.npass != 'undefined' ? data.npass : '' %>" name="npass"
+                class="form-control form-control-sm" id="npass" placeholder="New password">
+              <small id="ccError"
+                class="form-text text-danger"><%= typeof errors.npass != 'undefined' ? errors.npass.msg : '' %></small>
+            </div>
+            <div class="form-group">
+              <label for="re-password">Re-Enter Password</label>
+              <input type="password" value="<%= typeof data.repass != 'undefined' ? data.repass : '' %>" name="repass"
+                class="form-control form-control-sm" id="re-password" placeholder="Re-Enter Password">
+              <small id="ccError"
+                class="form-text text-danger"><%= typeof errors.repass != 'undefined' ? errors.repass.msg : '' %></small>
+            </div>
+            <button type="submit" class="btn btn-info mx-auto d-block">Save Changes</button>
+          </form>
+        </div>
+      </div>
+      <!--Section: Password change-->
+    </div>
+  </div>
+  <!-- row ends -->
+</div>
+
+<script src="/js/jquery-3.3.1.min.js"></script>
+<script src="/js/cleave.js"></script>
+<script src="/js/cleave-phone.i18n.js"></script>
+<script>
+  // set values in select item
+  $('#country').val('<%= typeof data.country != "undefined" ? data.country : user.country %>');
+  $('#blood').val('<%= typeof data.blood != "undefined" ? data.blood : user.blood %>');
+  $('#select-country').val('<%= typeof data.regionCode != "undefined" ? data.regionCode : user.regionCode %>');
+  $('#gender').val('<%= typeof data.gender != "undefined" ? data.gender : user.gender %>');
+  $('#occupation').val('<%= typeof data.occupation != "undefined" ? data.occupation : user.occupation %>');
+</script>
+<script src="/js/gijgo.min.js" type="text/javascript"></script>
+<script src="/js/settings.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/axios.min.js"></script>
+<!-- <script src="/js/mdb.min.js"></script> -->
+<script src="/js/owl.carousel.min.js"></script>
+<script src="/js/fa.js"></script>
+<script src="/js/main.js"></script>
+</body>
+
+</html>

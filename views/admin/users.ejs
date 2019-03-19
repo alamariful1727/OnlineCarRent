@@ -1,0 +1,53 @@
+<style>
+  body {
+    background: linear-gradient(to right, rgb(28, 211, 156) 0%, #b177f7 100%);
+  }
+</style>
+<div class="container">
+  <h1 class="text-center head-text">All users..<a href="/admin" class="btn btn-dark ml-1">Admin<i
+        class="fas fa-sign-out-alt ml-1"></i></a></h1>
+  <hr class="head-hr">
+  <!-- row starts -->
+  <div class="row">
+    <div class="col-lg-12 col-md-12 mt-3">
+      <!--Section: Users-->
+      <section class="card mb-4">
+        <div class="card-body text-center">
+          <h5>
+            <strong>Users</strong>
+          </h5>
+          <table class="table table-hover">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Username</th>
+                <th scope="col">Email</th>
+                <th scope="col">Country</th>
+                <th scope="col">Type</th>
+              </tr>
+            </thead>
+            <tbody>
+              <%users.forEach(function (user, i, arr) {%>
+              <tr>
+                <th scope="row"><%= user.uid %></th>
+                <td><%= user.username %></td>
+                <td><%= user.email %></td>
+                <td><%= user.country %></td>
+                <td><%= user.type %></td>
+                <td><a href="/admin/edituser/<%= user.uid %>" class="btn btn-warning mr-1">Edit<i
+                      class="fas fa-sign-out-alt ml-1"></i></a>
+                  <a href="/admin/deleteuser/<%= user.uid %>" class="btn btn-danger">Delete<i
+                      class="fas fa-sign-out-alt ml-1"></i></a></td>
+              </tr>
+              <%});%>
+
+            </tbody>
+          </table>
+        </div>
+      </section>
+      <!--Section: Users-->
+
+    </div>
+  </div>
+  <!-- row ends -->
+</div>

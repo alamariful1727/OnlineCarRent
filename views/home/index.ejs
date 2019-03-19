@@ -1,0 +1,42 @@
+<style>
+	body {
+		background: #ED4264;
+		/* fallback for old browsers */
+		background: -webkit-linear-gradient(to right, #FFEDBC, #ED4264);
+		/* Chrome 10-25, Safari 5.1-6 */
+		background: linear-gradient(to right, #FFEDBC, #ED4264);
+		/* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+	}
+</style>
+<div class="container">
+	<h1 class="text-center head-text"><%=title%></h1>
+	<hr class="head-hr">
+
+	<!-- row ends -->
+	<div class="row">
+		<div class="card-columns">
+
+			<%cars.forEach(function (car, i, arr) {%>
+			<%if(car.photo != ''){%>
+			<div class="card">
+				<img class="card-img-top" src="/uploads/<%=car.photo%>" alt="Sorry: Admin will Add a image later..">
+				<div class="card-body">
+					<h5 class="card-title"><%=car.cname%></h5>
+					<h6 class="card-subtitle mb-2 text-muted"><%=car.category%></h6>
+					<p class="card-text"><%=car.description%></p>
+					<ul class="list-group list-group-flush">
+						<li class="list-group-item">Min rent price: <%=car.hprice%> ++</li>
+						<li class="list-group-item"><a href="#" class="btn btn-dark card-link">Book for rent</a>
+							<a href="#" class="btn btn-info card-link">Details</a></li>
+					</ul>
+				</div>
+			</div>
+			<%}%>
+			<%});%>
+
+		</div>
+		<!-- card deck ends -->
+	</div>
+	<!-- row ends -->
+</div>
