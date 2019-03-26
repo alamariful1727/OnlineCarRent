@@ -16,10 +16,14 @@
   <div class="alert alert-info" role="alert">
     <strong><%= tittle %></strong>
   </div>
+  <%}else{%>
+  <div class="alert alert-warning" role="alert">
+    <strong>Please follow these steps!!</strong>
+  </div>
   <%}%>
   <!-- row ends -->
   <div class="row">
-    <div class="col-lg-6 col-md-12">
+    <div id="step1" class="col-lg-6 col-md-12">
       <div class="alert alert-warning" role="alert">
         <strong>STEP 1</strong>
       </div>
@@ -82,7 +86,9 @@
   experiences!!</a>
 </div>
 <!--  -->
-<div class="col-lg-6 col-md-12">
+
+
+<div id='step2' class="col-lg-6 col-md-12">
   <div class="container text-center">
     <div class="alert alert-warning" role="alert">
       <strong>STEP 2</strong>
@@ -115,5 +121,18 @@
 </div>
 <!-- row ends -->
 </div>
-
+<script>
+  $('#category').val('<%= typeof data.category != "undefined" ? data.category : "" %>');
+  var infoNotAdded = '<%=infoNotAdded%>';
+  if (infoNotAdded == 'true') {
+    console.log('not added');
+    document.getElementById("upload_file").disabled = true;
+    $('#step1').show();
+  } else {
+    document.getElementById("upload_file").disabled = false;
+    console.log('added');
+    $('#step1').hide();
+    $('#step2').addClass("mx-auto");
+  }
+</script>
 <script src="/js/carfileUpload.js"></script>

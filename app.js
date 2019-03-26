@@ -69,6 +69,7 @@ app.use(function (req, res, next) {
   res.locals.errors = [];
   res.locals.data = {};
   res.locals.tittle = "";
+  res.locals.infoNotAdded = true;
   res.locals.isAuth = req.isAuthenticated();
   res.locals.isAdmin = req.user || null;
   res.locals.success_msg = req.flash('success_msg');

@@ -7,7 +7,7 @@ var uploadModel = require('../models//upload-model');
 router.get('/', function (req, res) {
   carModel.getAll(function (results) {
     if (results.length > 0) {
-      console.log(results);
+      // console.log(results);
       res.render('car/index', {
         cars: results
       });
@@ -122,7 +122,8 @@ router.post('/add', function (req, res) {
     carModel.insert(data, function (success) {
       if (success) {
         res.render("car/addcar", {
-          tittle: "Now, add a picture of that car!!"
+          tittle: "Now, add a picture of that car!!",
+          infoNotAdded: false
         });
       } else {
         res.render("car/addcar");
@@ -148,19 +149,22 @@ router.post('/delete', (req, res) => {
 });
 
 router.post('/update', (req, res) => {
-  // console.log(req.body.blog);
-  carModel.update(req.body.blog, function (success) {
-    if (success) {
-      req.flash('success_msg', `${req.user.username} recently updated a blog .`);
-      res.send({
-        msg: true
-      })
-    } else {
-      res.send({
-        msg: false
-      })
-    }
+  console.log(req.body);
+  res.send({
+    data: req.body
   });
+  // carModel.update(req.body.blog, function (success) {
+  //   if (success) {
+  //     req.flash('success_msg', `${req.user.username} recently updated a blog .`);
+  //     res.send({
+  //       msg: true
+  //     })
+  //   } else {
+  //     res.send({
+  //       msg: false
+  //     })
+  //   }
+  // });
 });
 
 module.exports = router;

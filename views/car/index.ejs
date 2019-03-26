@@ -24,10 +24,10 @@
     <div class="card-columns">
 
       <%cars.forEach(function (car, i, arr) {%>
-      <%if(car.photo != ''){%>
+      <!-- for admin -->
+      <%if(isAuth){%>
+      <%if(isAdmin.type == 'admin'){%>
       <div class="card">
-        <%if(isAuth){%>
-        <%if(isAdmin.type == 'admin'){%>
         <div class="text-right abs-opt">
           <button type="button" data-cid="<%=car.cid%>" onclick="getCid(this);" id="btnEdit" class="btn btn-info"
             data-toggle="modal" data-target="#editModal">
@@ -38,7 +38,21 @@
             <span><i class="fas fa-trash-alt text-light"></i></span>
           </button>
         </div>
-        <%}}%>
+        <img class="card-img-top" src="/uploads/<%=car.photo%>" alt="Sorry: Admin will Add a image later..">
+        <div class="card-body">
+          <h5 class="card-title"><%=car.cname%></h5>
+          <h6 class="card-subtitle mb-2 text-muted"><%=car.category%></h6>
+          <p class="card-text"><%=car.description%></p>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">Min rent price: <%=car.hprice%> ++</li>
+            <li class="list-group-item"><a href="#" class="btn btn-dark card-link">Book for rent</a>
+              <a href="#" class="btn btn-info card-link">Details</a></li>
+          </ul>
+        </div>
+      </div>
+      <%}} else if(car.photo != ''){%>
+      <!-- for everyone -->
+      <div class="card">
         <img class="card-img-top" src="/uploads/<%=car.photo%>" alt="Sorry: Admin will Add a image later..">
         <div class="card-body">
           <h5 class="card-title"><%=car.cname%></h5>
@@ -54,22 +68,183 @@
       <%}%>
 
       <%});%>
-      <!-- <div class="card">
-        <img class="card-img-top" src="/uploads/cars/Mercedes-Benz.jpg" alt="Card image cap">
-        <div class="card-body">
-          <h5 class="card-title">Name</h5>
-          <h6 class="card-subtitle mb-2 text-muted">Category</h6>
-          <p class="card-text">Description</p>
-          <ul class="list-group list-group-flush">
-            <li class="list-group-item">Min rent price: 600 ++</li>
-            <li class="list-group-item"><a href="#" class="btn btn-dark card-link">Book for rent</a>
-              <a href="#" class="btn btn-info card-link">Details</a></li>
-          </ul>
+
+      <!-- edit Modal -->
+      <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalTitle"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalCenterTitle">Edit your Car here!!</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <div class="form-group">
+                <label for="cname">Car name</label>
+                <input type="text" required value="<%= typeof data.cname != 'undefined' ? data.cname : '' %>"
+                  name="cname" class="form-control" id="cname" aria-describedby="cnameError"
+                  placeholder="Enter your car name!!">
+                <small id="cnameError" class="form-text text-danger"></small>
+              </div>
+              <div class="form-group">
+                <label for="description">Description</label>
+                <textarea name="description" class="form-control" placeholder="Write your car details ..."
+                  id="description" rows="3"></textarea>
+                <small id="ccError" class="form-text text-danger"></small>
+              </div>
+              <!-- category -->
+              <div class="form-group">
+                <label for="category">Category</label>
+                <select required name="category" class="form-control form-control-sm" id="category">
+                  <option value="" selected="selected" disabled="disabled">Select category</option>
+                  <option value="private car">Private car</option>
+                  <option value="microbus/van">Microbus/Van</option>
+                  <option value="big truck">Big Truck</option>
+                  <option value="pickup truck">PickUp truck</option>
+                </select>
+                <small id="ccError" class="form-text text-danger"></small>
+              </div>
+              <!-- category ends -->
+              <div class="row">
+                <!-- hourly -->
+                <div class="form-group col-lg-6 col-md-6">
+                  <label for="hprice">Hourly rate</label>
+                  <input type="text" required value="<%= typeof data.hprice != 'undefined' ? data.hprice : '' %>"
+                    name="hprice" class="form-control" id="hprice" aria-describedby="hpriceError"
+                    placeholder="1-10000 tk..">
+                  <small id="hpriceError" class="form-text text-danger"></small>
+                </div>
+                <!-- hourly ends -->
+                <!-- weekly -->
+                <div class="form-group col-lg-6 col-md-6">
+                  <label for="wprice">Weekly rate</label>
+                  <input type="text" required value="<%= typeof data.wprice != 'undefined' ? data.wprice : '' %>"
+                    name="wprice" class="form-control" id="wprice" aria-describedby="wpriceError"
+                    placeholder="1-70000 tk..">
+                  <small id="wpriceError" class="form-text text-danger"></small>
+                </div>
+                <!-- weekly ends -->
+              </div>
+            </div>
+            <div class="modal-footer justify-content-center">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button id="editCar" type="button" class="btn btn-danger">Edit</button>
+            </div>
+          </div>
         </div>
-      </div> -->
+      </div>
+      <!-- edit Modal ends -->
+      <!-- Delete Modal -->
+      <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
+        aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalCenterTitle">Are you sure to delete this Car ?</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              Once you delete this Car, you will never get it back!!
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button id="deleteCar" type="button" class="btn btn-danger">Delete</button>
+            </div>
+          </div>
+        </div>
+      </div>
 
     </div>
     <!-- card deck ends -->
   </div>
   <!-- row ends -->
 </div>
+
+<script>
+  // edit & delete car [Ajax using axios]
+  var carID = null, body = null, id = null;
+  function getCid(btn) {
+    carID = $(btn).data('cid');
+    id = $(btn).attr('id');
+    console.log(carID, id);
+    const request = async () => {
+      const response = await fetch('http://localhost:4545/api/car/' + carID);
+      const data = await response.json();
+      console.log(data);
+      $('#cname').val(data.cname);
+      $('#description').val(data.description);
+      $('#hprice').val(data.hprice);
+      $('#wprice').val(data.wprice);
+      $('#category').val(data.category);
+    }
+    request();
+  }
+
+  document.getElementById('editCar').addEventListener("click", function () {
+    var carInfo = {
+      cid: carID,
+      cname: $('#cname').val(data.cname),
+      description: $('#description').val(data.description),
+      hprice: $('#hprice').val(data.hprice),
+      wprice: $('#wprice').val(data.wprice),
+      category: $('#category').val(data.category),
+    };
+    console.log(carInfo);
+    // if (carInfo.body.length == 0) {
+    //   document.getElementById('bodyError').innerHTML = "Can't be empty!!";
+    // } else {
+
+    function dataForm(data) {
+      const form = new FormData()
+      for (const key in data) {
+        form.append(key, data[key]);
+      }
+      return form
+    }
+    var fdata = dataForm(carInfo);
+    var contentType = {
+      headers: {
+        "content-type": "multipart/form-data"
+      }
+    };
+
+    axios.post('/cars/upload', formData, contentType)
+      .then(function (response) {
+
+        console.log(response.data);
+      })
+      .catch(function (error) {
+        console.log("EEE", error);
+      });
+
+
+    // axios.post('http://localhost:4545/cars/update', { car: carInfo })
+    //   .then(response => {
+    //     console.log(response.data.msg);
+    //     window.location.href = "http://localhost:4545/cars";
+    //   })
+    //   .catch(error => {
+    //     console.log(error);
+    //   });
+
+
+    // }
+  });
+
+  document.getElementById('deleteCar').addEventListener("click", function () {
+    axios.post('http://localhost:4545/cars/delete', { cid: carID })
+      .then(response => {
+        // console.log(response.data.msg);
+        window.location.href = "http://localhost:4545/cars";
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  });
+
+// edit & delete cars ends
+</script>
